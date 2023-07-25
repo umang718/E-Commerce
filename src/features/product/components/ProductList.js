@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 //import { increment, incrementAsync, selectCount } from "./productListSlice";
-import {fetchAllProductAsync, selectAllProducts} from "../productSlice"
+import {fetchAllProductAsync, fetchProductsByFiltersAsync, selectAllProducts} from "../productSlice"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronLeftIcon, ChevronRightIcon, StarIcon } from "@heroicons/react/20/solid";
@@ -16,46 +16,36 @@ import {
 } from "@heroicons/react/20/solid";
 
 const sortOptions = [
-  { name: "Best Rating", sort: "rating", order: "desc", current: false },
-  { name: "Price: Low to High", sort: "price", order: "asc", current: false },
-  { name: "Price: High to Low", sort: "price", order: "desc", current: false },
+  { name: 'Best Rating', sort: 'rating', order: 'desc', current: false },
+  { name: 'Price: Low to High', sort: 'price', order: 'asc', current: false },
+  { name: 'Price: High to Low', sort: 'price', order: 'desc', current: false },
 ];
 
 const filters = [
   {
-    id: "color",
-    name: "Color",
-    options: [
-      { value: "white", label: "White", checked: false },
-      { value: "beige", label: "Beige", checked: false },
-      { value: "blue", label: "Blue", checked: true },
-      { value: "brown", label: "Brown", checked: false },
-      { value: "green", label: "Green", checked: false },
-      { value: "purple", label: "Purple", checked: false },
-    ],
-  },
-  {
     id: "category",
     name: "Category",
     options: [
-      { value: "smartphones", label: "smartphones", checked: false },
-      { value: "laptops", label: "laptops", checked: false },
-      { value: "fragrances", label: "fragrances", checked: true },
-      { value: "skincare", label: "skincare", checked: false },
-      { value: "groceries", label: "groceries", checked: false },
-      { value: "home-decoration", label: "home-decoration", checked: false },
-    ],
-  },
-  {
-    id: "size",
-    name: "Size",
-    options: [
-      { value: "2l", label: "2L", checked: false },
-      { value: "6l", label: "6L", checked: false },
-      { value: "12l", label: "12L", checked: false },
-      { value: "18l", label: "18L", checked: false },
-      { value: "20l", label: "20L", checked: false },
-      { value: "40l", label: "40L", checked: true },
+      { value: 'smartphones', label: 'smartphones', checked: false },
+      { value: 'laptops', label: 'laptops', checked: false },
+      { value: 'fragrances', label: 'fragrances', checked: false },
+      { value: 'skincare', label: 'skincare', checked: false },
+      { value: 'groceries', label: 'groceries', checked: false },
+      { value: 'home-decoration', label: 'home decoration', checked: false },
+      { value: 'furniture', label: 'furniture', checked: false },
+      { value: 'tops', label: 'tops', checked: false },
+      { value: 'womens-dresses', label: 'womens dresses', checked: false },
+      { value: 'womens-shoes', label: 'womens shoes', checked: false },
+      { value: 'mens-shirts', label: 'mens shirts', checked: false },
+      { value: 'mens-shoes', label: 'mens shoes', checked: false },
+      { value: 'mens-watches', label: 'mens watches', checked: false },
+      { value: 'womens-watches', label: 'womens watches', checked: false },
+      { value: 'womens-bags', label: 'womens bags', checked: false },
+      { value: 'womens-jewellery', label: 'womens jewellery', checked: false },
+      { value: 'sunglasses', label: 'sunglasses', checked: false },
+      { value: 'automotive', label: 'automotive', checked: false },
+      { value: 'motorcycle', label: 'motorcycle', checked: false },
+      { value: 'lighting', label: 'lighting', checked: false },
     ],
   },
   {
@@ -207,6 +197,21 @@ export default function ProductList() {
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const products = useSelector(selectAllProducts);
+  const [filter, setFilter] = useState({});
+
+  const handleFilter = (e, section, option) => {
+    const newFilter = { ...filter, [section.id]: option.value };
+    setFilter(newFilter);
+    dispatch(fetchProductsByFiltersAsync(newFilter));
+    console.log(section.id, option.value);
+  };
+
+  const handleSort = (e, option) => {
+    const newFilter = { ...filter, _sort: option.sort, _order:option.order };
+    setFilter(newFilter);
+    dispatch(fetchProductsByFiltersAsync(newFilter));
+  };
+
 
   useEffect(()=> {
     dispatch(fetchAllProductAsync());
@@ -302,6 +307,7 @@ export default function ProductList() {
                                       defaultValue={option.value}
                                       type="checkbox"
                                       defaultChecked={option.checked}
+                                      onChange={(e)=> handleFilter(e,section,option)}
                                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                     />
                                     <label
@@ -357,8 +363,8 @@ export default function ProductList() {
                       {sortOptions.map((option) => (
                         <Menu.Item key={option.name}>
                           {({ active }) => (
-                            <a
-                              href={option.href}
+                            <p
+                            onClick={e=>handleSort(e,option)}
                               className={classNames(
                                 option.current
                                   ? "font-medium text-gray-900"
@@ -368,7 +374,7 @@ export default function ProductList() {
                               )}
                             >
                               {option.name}
-                            </a>
+                            </p>
                           )}
                         </Menu.Item>
                       ))}
@@ -444,6 +450,7 @@ export default function ProductList() {
                                   defaultValue={option.value}
                                   type="checkbox"
                                   defaultChecked={option.checked}
+                                  onChange={(e)=> handleFilter(e,section,option)}
                                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                 />
                                 <label
@@ -481,13 +488,13 @@ export default function ProductList() {
                             <div className="mt-4 flex justify-between">
                               <div>
                                 <h3 className="text-sm text-gray-700">
-                                  <a href={product.thumbnail}>
+                                  <div href={product.thumbnail}>
                                     <span
                                       aria-hidden="true"
                                       className="absolute inset-0"
                                     />
                                     {product.title}
-                                  </a>
+                                  </div>
                                 </h3>
                                 <p className="mt-1 text-sm text-gray-500">
                                   <StarIcon className="w-6 h-6 inline"></StarIcon>
