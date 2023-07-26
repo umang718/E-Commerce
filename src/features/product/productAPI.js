@@ -20,7 +20,7 @@ export function fetchProductsByFilters(filter,sort) {
     }
 
     for (let key in sort ){
-
+      queryString += `${key}=${sort[key]}&`
     }
   
     return new Promise(async (resolve) =>{
