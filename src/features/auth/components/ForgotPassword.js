@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
-import { checkUserAsync } from '../authSlice';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 export default function ForgotPassword() {
@@ -61,9 +60,6 @@ export default function ForgotPassword() {
                 )}
               </div>
             </div>
-
-
-
             <div>
               <button
                 type="submit"

@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {useForm} from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
-//import { increment, incrementAsync, selectCount } from "./counterSlice";
 import { selectLoggedInUser, createUserAsync } from "../authSlice";
 export default function Signup() {
-  //const count = useSelector(selectCount);
   const dispatch = useDispatch();
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   console.log(errors)
   const user = useSelector(selectLoggedInUser);
   
