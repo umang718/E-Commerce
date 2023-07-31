@@ -2649,6 +2649,61 @@
       },
       "status": "pending",
       "id": 5
+    },
+    {
+      "items": [
+        {
+          "title": "Plastic Table",
+          "description": "V﻿ery good quality plastic table for multi purpose now in reasonable price",
+          "price": 50,
+          "discountPercentage": 4,
+          "rating": 4.01,
+          "stock": 136,
+          "brand": "Multi Purpose",
+          "category": "furniture",
+          "thumbnail": "https://i.dummyjson.com/data/products/34/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/34/1.jpg",
+            "https://i.dummyjson.com/data/products/34/2.jpg",
+            "https://i.dummyjson.com/data/products/34/3.jpg",
+            "https://i.dummyjson.com/data/products/34/4.jpg",
+            "https://i.dummyjson.com/data/products/34/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 2,
+          "id": 1
+        }
+      ],
+      "totalAmount": 50,
+      "totalItems": 1,
+      "user": {
+        "email": "demo@gmail.com",
+        "password": "Qwerty123",
+        "addresses": [
+          {
+            "name": "Umang Sorathiya",
+            "email": "umangvirat@gmail.com",
+            "phone": "09106574830",
+            "street": "STREET NO.3 HOUSE NO.3,SILVERGOLD RESIDENCY",
+            "city": "RAJKOT",
+            "state": "Gujarat",
+            "pinCode": "360005"
+          }
+        ],
+        "id": 2
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Umang Sorathiya",
+        "email": "umangvirat@gmail.com",
+        "phone": "09106574830",
+        "street": "STREET NO.3 HOUSE NO.3,SILVERGOLD RESIDENCY",
+        "city": "RAJKOT",
+        "state": "Gujarat",
+        "pinCode": "360005"
+      },
+      "status": "pending",
+      "id": 6
     }
   ]
 }

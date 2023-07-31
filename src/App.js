@@ -1,22 +1,16 @@
 import './App.css';
-import { useState, useEffect } from "react";
-import Cart from './features/cart/Cart';
-import ProductList from "./features/product/components/ProductList"
+import { useEffect } from "react";
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
 import SignupPage from './pages/SignupPage';
 import * as React from "react";
-import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
 } from "react-router-dom";
 import CartPage from './pages/CartPage';
 import Checkout from './pages/Checkout';
-import ProductDetail from './features/product/components/ProductDetail';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Protected from './features/auth/components/Protected';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,7 +18,6 @@ import { selectLoggedInUser } from './features/auth/authSlice';
 import PageNotFound from './pages/404';
 import OrderSuccessPage from './pages/OrderSuccessPage';
 import UserOrdersPage from './pages/UserOrdersPage';
-import UserProfile from './features/user/components/UserProfile';
 import UserProfilePage from './pages/UserProfilePage';
 import { fetchLoggedInUserAsync } from './features/user/userSlice';
 import Logout from './features/auth/components/Logout';
