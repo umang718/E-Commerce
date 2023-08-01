@@ -1,18 +1,17 @@
-import { Link } from "react-router-dom";
+import AdminProductList from "../features/admin/components/AdminProductList";
 import Navbar from "../features/navbar/Navbar";
 import ProductList from "../features/product/components/ProductList";
 
-function Home(){
+function AdminHome(){
     return (
         <div>
             <Navbar>
-                <ProductList>
+                <AdminProductList>
                     
-                </ProductList>
+                </AdminProductList>
             </Navbar>
-            
         </div>
     );
 }
 
-export default Home;
+export default AdminHome;
