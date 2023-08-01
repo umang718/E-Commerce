@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from "../features/cart/cartSlice";
 import { useForm } from "react-hook-form";
+import { discountedPrice } from "../app/constants";
 import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
 import { createOrderAsync, selectCurrentOrder, selectCurrentOrderStatus } from "../features/order/orderSlice";
 import { selectUserInfo } from "../features/user/userSlice";
@@ -24,7 +25,7 @@ function Checkout() {
   const currentOrder = useSelector(selectCurrentOrder)
 
   const totalAmount = items.reduce(
-    (amount, item) => item.price * item.quantity + amount,
+    (amount, item) => discountedPrice(item) * item.quantity + amount,
     0
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
@@ -282,100 +283,100 @@ function Checkout() {
                     Add Address
                   </button>
                 </div>
-                </div>
-                </form>
-                <div className="border-b border-gray-900/10 pb-12">
-                  <h2 className="text-base font-semibold leading-7 text-gray-900">
-                    Address
-                  </h2>
-                  <p className="mt-1 text-sm leading-6 text-gray-600">
-                    Choose from Existing Addresses
-                  </p>
-                  <ul role="list">
-                    {user.addresses.map((address, index) => (
-                      <li
-                        key={index}
-                        className="flex justify-between gap-x-6 px-5 py-5 border-solid border-2 border-gray-200"
-                      >
-                        <div className="flex gap-x-4">
-                          <input
-                            onChange={handleAddress}
-                            name="address"
-                            type="radio"
-                            value={index}
-                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                          />
-                          <div className="min-w-0 flex-auto">
-                            <p className="text-sm font-semibold leading-6 text-gray-900">
-                              {address.name}
-                            </p>
-                            <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                              {address.street}
-                            </p>
-                            <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                              {address.pinCode}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="hidden sm:flex sm:flex-col sm:items-end">
-                          <p className="text-sm leading-6 text-gray-900">
-                            Phone: {address.phone}
-                          </p>
-                          <p className="text-sm leading-6 text-gray-500">
-                            {address.city}
-                          </p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-10 space-y-10">
-                    <fieldset>
-                      <legend className="text-sm font-semibold leading-6 text-gray-900">
-                        Payment Methods
-                      </legend>
-                      <p className="mt-1 text-sm leading-6 text-gray-600">
-                        Choose one
-                      </p>
-                      <div className="mt-6 space-y-6">
-                        <div className="flex items-center gap-x-3">
-                          <input
-                            id="cash"
-                            name="payments"
-                            onChange={handlePayment}
-                            value="cash"
-                            type="radio"
-                            checked={paymentMethod === "cash"}
-                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                          />
-                          <label
-                            htmlFor="cash"
-                            className="block text-sm font-medium leading-6 text-gray-900"
-                          >
-                            Cash
-                          </label>
-                        </div>
-                        <div className="flex items-center gap-x-3">
-                          <input
-                            id="card"
-                            name="payments"
-                            onChange={handlePayment}
-                            value="card"
-                            type="radio"
-                            checked={paymentMethod === "card"}
-                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                          />
-                          <label
-                            htmlFor="card"
-                            className="block text-sm font-medium leading-6 text-gray-900"
-                          >
-                            Card Payments
-                          </label>
-                        </div>
+              </div>
+            </form>
+            <div className="border-b border-gray-900/10 pb-12">
+              <h2 className="text-base font-semibold leading-7 text-gray-900">
+                Address
+              </h2>
+              <p className="mt-1 text-sm leading-6 text-gray-600">
+                Choose from Existing Addresses
+              </p>
+              <ul role="list">
+                {user.addresses.map((address, index) => (
+                  <li
+                    key={index}
+                    className="flex justify-between gap-x-6 px-5 py-5 border-solid border-2 border-gray-200"
+                  >
+                    <div className="flex gap-x-4">
+                      <input
+                        onChange={handleAddress}
+                        name="address"
+                        type="radio"
+                        value={index}
+                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      />
+                      <div className="min-w-0 flex-auto">
+                        <p className="text-sm font-semibold leading-6 text-gray-900">
+                          {address.name}
+                        </p>
+                        <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                          {address.street}
+                        </p>
+                        <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                          {address.pinCode}
+                        </p>
                       </div>
-                    </fieldset>
+                    </div>
+                    <div className="hidden sm:flex sm:flex-col sm:items-end">
+                      <p className="text-sm leading-6 text-gray-900">
+                        Phone: {address.phone}
+                      </p>
+                      <p className="text-sm leading-6 text-gray-500">
+                        {address.city}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-10 space-y-10">
+                <fieldset>
+                  <legend className="text-sm font-semibold leading-6 text-gray-900">
+                    Payment Methods
+                  </legend>
+                  <p className="mt-1 text-sm leading-6 text-gray-600">
+                    Choose one
+                  </p>
+                  <div className="mt-6 space-y-6">
+                    <div className="flex items-center gap-x-3">
+                      <input
+                        id="cash"
+                        name="payments"
+                        onChange={handlePayment}
+                        value="cash"
+                        type="radio"
+                        checked={paymentMethod === "cash"}
+                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      />
+                      <label
+                        htmlFor="cash"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Cash
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-3">
+                      <input
+                        id="card"
+                        name="payments"
+                        onChange={handlePayment}
+                        value="card"
+                        type="radio"
+                        checked={paymentMethod === "card"}
+                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      />
+                      <label
+                        htmlFor="card"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Card Payments
+                      </label>
+                    </div>
                   </div>
-                </div>
+                </fieldset>
+              </div>
+            </div>
           </div>
           <div className="lg:col-span-2">
             <div className="mx-auto bg-white mt-12 max-w-7xl px-2 sm:px-2 lg:px-4">
@@ -401,7 +402,7 @@ function Checkout() {
                               <h3>
                                 <a href={item.href}>{item.title}</a>
                               </h3>
-                              <p className="ml-4">${item.price}</p>
+                              <p className="ml-4">${discountedPrice(item)}</p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">
                               {item.brand}

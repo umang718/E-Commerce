@@ -2376,6 +2376,23 @@
       "addresses": [],
       "role": "admin",
       "id": 3
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "Qwerty123",
+      "addresses": [
+        {
+          "name": "test User",
+          "email": "test@gmail.com",
+          "phone": "123456789",
+          "street": "14th main",
+          "city": "Delhi",
+          "state": "Delhi",
+          "pinCode": "456789"
+        }
+      ],
+      "role": "user",
+      "id": 4
     }
   ],
   "cart": [],
@@ -2431,7 +2448,7 @@
         "state": "Gujarat",
         "pinCode": "360005"
       },
-      "status": "pending",
+      "status": "delivered",
       "id": 1
     },
     {
@@ -2495,7 +2512,7 @@
         "state": "Gujarat",
         "pinCode": "360005"
       },
-      "status": "pending",
+      "status": "dispatched",
       "id": 2
     },
     {
@@ -2558,7 +2575,7 @@
         "state": "Gujarat",
         "pinCode": "360005"
       },
-      "status": "pending",
+      "status": "cancelled",
       "id": 3
     },
     {
@@ -2730,6 +2747,322 @@
       },
       "status": "pending",
       "id": 6
+    },
+    {
+      "items": [
+        {
+          "title": "Oil Free Moisturizer 100ml",
+          "description": "Dermive Oil Free Moisturizer with SPF 20 is specifically formulated with ceramides, hyaluronic acid & sunscreen.",
+          "price": 40,
+          "discountPercentage": 13.1,
+          "rating": 4.56,
+          "stock": 88,
+          "brand": "Dermive",
+          "category": "skincare",
+          "thumbnail": "https://i.dummyjson.com/data/products/18/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/18/1.jpg",
+            "https://i.dummyjson.com/data/products/18/2.jpg",
+            "https://i.dummyjson.com/data/products/18/3.jpg",
+            "https://i.dummyjson.com/data/products/18/4.jpg",
+            "https://i.dummyjson.com/data/products/18/thumbnail.jpg"
+          ],
+          "quantity": 2,
+          "user": 4,
+          "id": 1
+        },
+        {
+          "title": "3D Embellishment Art Lamp",
+          "description": "3D led lamp sticker Wall sticker 3d wall art light on/off button  cell operated (included)",
+          "price": 20,
+          "discountPercentage": 16.49,
+          "rating": 4.82,
+          "stock": 54,
+          "brand": "LED Lights",
+          "category": "home-decoration",
+          "thumbnail": "https://i.dummyjson.com/data/products/28/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/28/1.jpg",
+            "https://i.dummyjson.com/data/products/28/2.jpg",
+            "https://i.dummyjson.com/data/products/28/3.png",
+            "https://i.dummyjson.com/data/products/28/4.jpg",
+            "https://i.dummyjson.com/data/products/28/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 4,
+          "id": 2
+        }
+      ],
+      "totalAmount": 87,
+      "totalItems": 3,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Qwerty123",
+        "addresses": [
+          {
+            "name": "test User",
+            "email": "test@gmail.com",
+            "phone": "123456789",
+            "street": "14th main",
+            "city": "Delhi",
+            "state": "Delhi",
+            "pinCode": "456789"
+          }
+        ],
+        "role": "",
+        "id": 4
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "test User",
+        "email": "test@gmail.com",
+        "phone": "123456789",
+        "street": "14th main",
+        "city": "Delhi",
+        "state": "Delhi",
+        "pinCode": "456789"
+      },
+      "status": "pending",
+      "id": 7
+    },
+    {
+      "items": [
+        {
+          "title": "Women Shoes",
+          "description": "2020 New Arrivals Genuine Leather Fashion Trend Platform Summer Women Shoes",
+          "price": 36,
+          "discountPercentage": 16.87,
+          "rating": 4.33,
+          "stock": 46,
+          "brand": "Arrivals Genuine",
+          "category": "womens-shoes",
+          "thumbnail": "https://i.dummyjson.com/data/products/50/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/50/1.jpeg",
+            "https://i.dummyjson.com/data/products/50/2.jpg",
+            "https://i.dummyjson.com/data/products/50/3.jpg"
+          ],
+          "quantity": 1,
+          "user": 4,
+          "id": 1
+        },
+        {
+          "title": "Stainless Steel Women",
+          "description": "Fashion Skmei 1830 Shell Dial Stainless Steel Women Wrist Watch Lady Bracelet Watch Quartz Watches Ladies",
+          "price": 35,
+          "discountPercentage": 8.98,
+          "rating": 4.08,
+          "stock": 111,
+          "brand": "Bracelet",
+          "category": "womens-watches",
+          "thumbnail": "https://i.dummyjson.com/data/products/70/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/70/1.jpg",
+            "https://i.dummyjson.com/data/products/70/2.jpg",
+            "https://i.dummyjson.com/data/products/70/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 4,
+          "id": 2
+        }
+      ],
+      "totalAmount": 62,
+      "totalItems": 2,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Qwerty123",
+        "addresses": [
+          {
+            "name": "test User",
+            "email": "test@gmail.com",
+            "phone": "123456789",
+            "street": "14th main",
+            "city": "Delhi",
+            "state": "Delhi",
+            "pinCode": "456789"
+          }
+        ],
+        "role": "",
+        "id": 4
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "test User",
+        "email": "test@gmail.com",
+        "phone": "123456789",
+        "street": "14th main",
+        "city": "Delhi",
+        "state": "Delhi",
+        "pinCode": "456789"
+      },
+      "status": "pending",
+      "id": 8
+    },
+    {
+      "items": [
+        {
+          "title": "HP Pavilion 15-DK1056WM",
+          "description": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
+          "price": 1099,
+          "discountPercentage": 6.18,
+          "rating": 4.43,
+          "stock": 89,
+          "brand": "HP Pavilion",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/10/thumbnail.jpeg",
+          "images": [
+            "https://i.dummyjson.com/data/products/10/1.jpg",
+            "https://i.dummyjson.com/data/products/10/2.jpg",
+            "https://i.dummyjson.com/data/products/10/3.jpg",
+            "https://i.dummyjson.com/data/products/10/thumbnail.jpeg"
+          ],
+          "quantity": 2,
+          "user": 4,
+          "id": 1
+        }
+      ],
+      "totalAmount": 2062,
+      "totalItems": 2,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Qwerty123",
+        "addresses": [
+          {
+            "name": "test User",
+            "email": "test@gmail.com",
+            "phone": "123456789",
+            "street": "14th main",
+            "city": "Delhi",
+            "state": "Delhi",
+            "pinCode": "456789"
+          }
+        ],
+        "role": "",
+        "id": 4
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "test User",
+        "email": "test@gmail.com",
+        "phone": "123456789",
+        "street": "14th main",
+        "city": "Delhi",
+        "state": "Delhi",
+        "pinCode": "456789"
+      },
+      "status": "pending",
+      "id": 9
+    },
+    {
+      "items": [
+        {
+          "title": "Bluetooth Aux",
+          "description": "Bluetooth Aux Bluetooth Car Aux Car Bluetooth Transmitter Aux Audio Receiver Handfree Car Bluetooth Music Receiver Universal 3.5mm Streaming A2DP Wireless Auto AUX Audio Adapter With Mic For Phone MP3",
+          "price": 25,
+          "discountPercentage": 10.56,
+          "rating": 4.57,
+          "stock": 22,
+          "brand": "Car Aux",
+          "category": "automotive",
+          "thumbnail": "https://i.dummyjson.com/data/products/86/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/86/1.jpg",
+            "https://i.dummyjson.com/data/products/86/2.webp",
+            "https://i.dummyjson.com/data/products/86/3.jpg",
+            "https://i.dummyjson.com/data/products/86/4.jpg",
+            "https://i.dummyjson.com/data/products/86/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 4,
+          "id": 1
+        }
+      ],
+      "totalAmount": 22,
+      "totalItems": 1,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Qwerty123",
+        "addresses": [
+          {
+            "name": "test User",
+            "email": "test@gmail.com",
+            "phone": "123456789",
+            "street": "14th main",
+            "city": "Delhi",
+            "state": "Delhi",
+            "pinCode": "456789"
+          }
+        ],
+        "role": "",
+        "id": 4
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "test User",
+        "email": "test@gmail.com",
+        "phone": "123456789",
+        "street": "14th main",
+        "city": "Delhi",
+        "state": "Delhi",
+        "pinCode": "456789"
+      },
+      "status": "pending",
+      "id": 10
+    },
+    {
+      "items": [
+        {
+          "title": "HOT SALE IN EUROPE electric racing motorcycle",
+          "description": "HOT SALE IN EUROPE electric racing motorcycle electric motorcycle for sale adult electric motorcycles",
+          "price": 920,
+          "discountPercentage": 14.4,
+          "rating": 4.19,
+          "stock": 22,
+          "brand": "BRAVE BULL",
+          "category": "motorcycle",
+          "thumbnail": "https://i.dummyjson.com/data/products/92/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/92/1.jpg",
+            "https://i.dummyjson.com/data/products/92/2.jpg",
+            "https://i.dummyjson.com/data/products/92/3.jpg",
+            "https://i.dummyjson.com/data/products/92/4.jpg"
+          ],
+          "quantity": 1,
+          "user": 4,
+          "id": 1
+        }
+      ],
+      "totalAmount": 788,
+      "totalItems": 1,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Qwerty123",
+        "addresses": [
+          {
+            "name": "test User",
+            "email": "test@gmail.com",
+            "phone": "123456789",
+            "street": "14th main",
+            "city": "Delhi",
+            "state": "Delhi",
+            "pinCode": "456789"
+          }
+        ],
+        "role": "",
+        "id": 4
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "test User",
+        "email": "test@gmail.com",
+        "phone": "123456789",
+        "street": "14th main",
+        "city": "Delhi",
+        "state": "Delhi",
+        "pinCode": "456789"
+      },
+      "status": "pending",
+      "id": 11
     }
   ]
 }
