@@ -30,11 +30,15 @@ export const updateUserAsync = createAsyncThunk(
 
 export const checkUserAsync = createAsyncThunk(
     'user/checkUser',
-    async (loginInfo) => {
+     async (loginInfo, { rejectWithValue }) => {
+    try {
       const response = await checkUser(loginInfo);
-      // The value we return becomes the `fulfilled` action payload
       return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
     }
+  }
 );
 
 export const signOutAsync = createAsyncThunk(
