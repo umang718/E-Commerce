@@ -7,7 +7,7 @@ import { selectLoggedInUser, createUserAsync } from "../authSlice";
 export default function Signup() {
   const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  console.log(errors)
+  
   const user = useSelector(selectLoggedInUser);
   
 

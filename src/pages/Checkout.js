@@ -4,9 +4,10 @@ import { Link, Navigate } from "react-router-dom";
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from "../features/cart/cartSlice";
 import { useForm } from "react-hook-form";
 import { discountedPrice } from "../app/constants";
-import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
+import { selectLoggedInUser } from "../features/auth/authSlice";
 import { createOrderAsync, selectCurrentOrder, selectCurrentOrderStatus } from "../features/order/orderSlice";
 import { selectUserInfo } from "../features/user/userSlice";
+import { updateUserAsync } from "../features/user/userSlice";
 
 
 
