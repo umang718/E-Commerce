@@ -1,14 +1,20 @@
-import React from "react";
+import { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Fragment, useState } from 'react';
-import { deleteItemFromCartAsync, selectItems, updateCartAsync, selectCartStatus } from "./cartSlice";
-import { Link, Navigate } from "react-router-dom";
+import {
+  deleteItemFromCartAsync,
+  selectCartStatus,
+  selectItems,
+  updateCartAsync,
+} from "./cartSlice";
+import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { discountedPrice } from "../../app/constants";
-import { Grid } from 'react-loader-spinner';
-import Modal from '../common/Modal';
+import { Grid } from "react-loader-spinner";
+import Modal from "../common/Modal";
 
 export default function Cart() {
   const dispatch = useDispatch();
+
   const items = useSelector(selectItems);
   const status = useSelector(selectCartStatus);
   const [openModal, setOpenModal] = useState(null);
@@ -18,25 +24,21 @@ export default function Cart() {
     0
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
+
   const handleQuantity = (e, item) => {
-    dispatch(updateCartAsync({ id:item.id, quantity: +e.target.value }));
+    dispatch(updateCartAsync({ id: item.id, quantity: +e.target.value }));
   };
 
   const handleRemove = (e, id) => {
     dispatch(deleteItemFromCartAsync(id));
   };
 
-
   return (
     <>
-      {!items.length && (
-        <Navigate to="/" replace={true}>
-          {" "}
-        </Navigate>
-      )}
+      {!items.length && <Navigate to="/" replace={true}></Navigate>}
 
       <div>
-        <div className="mx-auto bg-white mt-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
             <h1 className="text-4xl my-5 font-bold tracking-tight text-gray-900">
               Cart
@@ -87,7 +89,6 @@ export default function Cart() {
                           >
                             Qty
                           </label>
-
                           <select
                             onChange={(e) => handleQuantity(e, item)}
                             value={item.quantity}
@@ -131,10 +132,10 @@ export default function Cart() {
           <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
             <div className="flex justify-between my-2 text-base font-medium text-gray-900">
               <p>Subtotal</p>
-              <p>${totalAmount}</p>
+              <p>$ {totalAmount}</p>
             </div>
             <div className="flex justify-between my-2 text-base font-medium text-gray-900">
-              <p>Total Items in cart</p>
+              <p>Total Items in Cart</p>
               <p>{totalItems} items</p>
             </div>
             <p className="mt-0.5 text-sm text-gray-500">
@@ -143,9 +144,7 @@ export default function Cart() {
             <div className="mt-6">
               <Link
                 to="/checkout"
-                className="flex items-center justify-center rounded-md
-                border border-transparent bg-indigo-600 px-6 py-3 text-base
-                font-medium text-white shadow-sm hover:bg-indigo-700"
+                className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
               >
                 Checkout
               </Link>

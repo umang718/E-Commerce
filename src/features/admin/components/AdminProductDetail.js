@@ -1,20 +1,23 @@
-
 import { useState, useEffect } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
-import {fetchProductByIdAsync, selectProductById} from "../../product/productSlice"
-import { useParams } from 'react-router-dom';
+import {
+  fetchProductByIdAsync,
+  selectProductById,
+} from "../../product/productSlice";
+import { useParams } from "react-router-dom";
 import { addToCartAsync } from "../../cart/cartSlice";
-import { selectLoggedInUser } from "../../auth/authSlice";
 import { discountedPrice } from "../../../app/constants";
 
-const colors=[
+// TODO: In server data we will add colors, sizes , highlights. to each product
+
+const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
   { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
   { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
-]
-const sizes= [
+];
+const sizes = [
   { name: "XXS", inStock: false },
   { name: "XS", inStock: true },
   { name: "S", inStock: true },
@@ -23,39 +26,38 @@ const sizes= [
   { name: "XL", inStock: true },
   { name: "2XL", inStock: true },
   { name: "3XL", inStock: true },
-]
- 
+];
+
 const highlights = [
-  'Hand cut and sewn locally',
-  'Dyed with our proprietary colors',
-  'Pre-washed & pre-shrunk',
-  'Ultra-soft 100% cotton',
-]
+  "Hand cut and sewn locally",
+  "Dyed with our proprietary colors",
+  "Pre-washed & pre-shrunk",
+  "Ultra-soft 100% cotton",
+];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-
+// TODO : Loading UI
 
 export default function AdminProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
-  const user = useSelector(selectLoggedInUser)
   const product = useSelector(selectProductById);
-  const params = useParams()
+  const dispatch = useDispatch();
+  const params = useParams();
 
   const handleCart = (e) => {
     e.preventDefault();
-    const newItem = { ...product, quantity: 1, user: user.id };
-    delete newItem['id']
-    dispatch(addToCartAsync(newItem))
+    const newItem = { ...product, quantity: 1 };
+    delete newItem["id"];
+    dispatch(addToCartAsync(newItem));
   };
 
-  const dispatch = useDispatch();
-  useEffect(()=> {
-    dispatch(fetchProductByIdAsync(params.id))
-  },[dispatch, params.id])
+  useEffect(() => {
+    dispatch(fetchProductByIdAsync(params.id));
+  }, [dispatch, params.id]);
 
   return (
     <div className="bg-white">

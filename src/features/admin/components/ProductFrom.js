@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import {
   clearSelectedProduct,
   createProductAsync,
@@ -7,13 +7,12 @@ import {
   selectCategories,
   selectProductById,
   updateProductAsync,
-} from '../../product/productSlice';
-import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import Modal from '../../common/Modal';
+} from "../../product/productSlice";
+import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Modal from "../../common/Modal";
 import { useAlert } from "react-alert";
-
 
 function ProductForm() {
   const {
@@ -30,7 +29,6 @@ function ProductForm() {
   const selectedProduct = useSelector(selectProductById);
   const [openModal, setOpenModal] = useState(null);
   const alert = useAlert();
-
   useEffect(() => {
     if (params.id) {
       dispatch(fetchProductByIdAsync(params.id));
@@ -41,26 +39,25 @@ function ProductForm() {
 
   useEffect(() => {
     if (selectedProduct && params.id) {
-      setValue('title', selectedProduct.title);
-      setValue('description', selectedProduct.description);
-      setValue('price', selectedProduct.price);
-      setValue('discountPercentage', selectedProduct.discountPercentage);
-      setValue('thumbnail', selectedProduct.thumbnail);
-      setValue('stock', selectedProduct.stock);
-      setValue('image1', selectedProduct.images[0]);
-      setValue('image2', selectedProduct.images[1]);
-      setValue('image3', selectedProduct.images[2]);
-      setValue('brand', selectedProduct.brand);
-      setValue('category', selectedProduct.category);
+      setValue("title", selectedProduct.title);
+      setValue("description", selectedProduct.description);
+      setValue("price", selectedProduct.price);
+      setValue("discountPercentage", selectedProduct.discountPercentage);
+      setValue("thumbnail", selectedProduct.thumbnail);
+      setValue("stock", selectedProduct.stock);
+      setValue("image1", selectedProduct.images[0]);
+      setValue("image2", selectedProduct.images[1]);
+      setValue("image3", selectedProduct.images[2]);
+      setValue("brand", selectedProduct.brand);
+      setValue("category", selectedProduct.category);
     }
   }, [selectedProduct, params.id, setValue]);
 
-
-  const handleDelete = () =>{
-    const product = {...selectedProduct};
+  const handleDelete = () => {
+    const product = { ...selectedProduct };
     product.deleted = true;
     dispatch(updateProductAsync(product));
-  }
+  };
 
   return (
     <>
@@ -89,12 +86,13 @@ function ProductForm() {
             product.rating = selectedProduct.rating || 0;
             dispatch(updateProductAsync(product));
             alert.success("Product Updated");
+
             reset();
           } else {
             dispatch(createProductAsync(product));
             alert.success("Product Created");
+            // TODO: these alerts should check if API failed
             reset();
-            //TODO:  on product successfully added clear fields and show a message
           }
         })}
       >
@@ -110,6 +108,7 @@ function ProductForm() {
                   This product is deleted
                 </h2>
               )}
+
               <div className="sm:col-span-6">
                 <label
                   htmlFor="title"

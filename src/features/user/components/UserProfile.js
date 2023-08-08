@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectUserInfo, updateUserAsync } from '../userSlice';
-import { useForm } from 'react-hook-form';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectUserInfo, updateUserAsync } from "../userSlice";
+import { useForm } from "react-hook-form";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -10,6 +10,7 @@ export default function UserProfile() {
   const [showAddAddressForm, setShowAddAddressForm] = useState(false);
 
   //TODO: We will add payment section when we work on backend.
+
   const {
     register,
     handleSubmit,
@@ -33,13 +34,13 @@ export default function UserProfile() {
   const handleEditForm = (index) => {
     setSelectedEditIndex(index);
     const address = userInfo.addresses[index];
-    setValue('name', address.name);
-    setValue('email', address.email);
-    setValue('city', address.city);
-    setValue('state', address.state);
-    setValue('pinCode', address.pinCode);
-    setValue('phone', address.phone);
-    setValue('street', address.street);
+    setValue("name", address.name);
+    setValue("email", address.email);
+    setValue("city", address.city);
+    setValue("state", address.state);
+    setValue("pinCode", address.pinCode);
+    setValue("phone", address.phone);
+    setValue("street", address.street);
   };
 
   const handleAdd = (address) => {
@@ -50,6 +51,7 @@ export default function UserProfile() {
     dispatch(updateUserAsync(newUser));
     setShowAddAddressForm(false);
   };
+
   return (
     <div>
       <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -66,6 +68,7 @@ export default function UserProfile() {
             </h3>
           )}
         </div>
+
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <button
             onClick={(e) => {
@@ -95,6 +98,7 @@ export default function UserProfile() {
                   <p className="mt-1 text-sm leading-6 text-gray-600">
                     Use a permanent address where you can receive mail.
                   </p>
+
                   <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div className="sm:col-span-4">
                       <label
@@ -117,6 +121,7 @@ export default function UserProfile() {
                         )}
                       </div>
                     </div>
+
                     <div className="sm:col-span-4">
                       <label
                         htmlFor="email"
@@ -138,6 +143,7 @@ export default function UserProfile() {
                         )}
                       </div>
                     </div>
+
                     <div className="sm:col-span-3">
                       <label
                         htmlFor="phone"
@@ -159,6 +165,7 @@ export default function UserProfile() {
                         )}
                       </div>
                     </div>
+
                     <div className="col-span-full">
                       <label
                         htmlFor="street-address"
@@ -182,6 +189,7 @@ export default function UserProfile() {
                         )}
                       </div>
                     </div>
+
                     <div className="sm:col-span-2 sm:col-start-1">
                       <label
                         htmlFor="city"
@@ -204,6 +212,7 @@ export default function UserProfile() {
                         )}
                       </div>
                     </div>
+
                     <div className="sm:col-span-2">
                       <label
                         htmlFor="state"
@@ -225,6 +234,7 @@ export default function UserProfile() {
                         )}
                       </div>
                     </div>
+
                     <div className="sm:col-span-2">
                       <label
                         htmlFor="pinCode"
@@ -250,6 +260,7 @@ export default function UserProfile() {
                     </div>
                   </div>
                 </div>
+
                 <div className="mt-6 flex items-center justify-end gap-x-6">
                   <button
                     type="submit"
@@ -283,6 +294,7 @@ export default function UserProfile() {
                       <p className="mt-1 text-sm leading-6 text-gray-600">
                         Use a permanent address where you can receive mail.
                       </p>
+
                       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div className="sm:col-span-4">
                           <label
@@ -307,6 +319,7 @@ export default function UserProfile() {
                             )}
                           </div>
                         </div>
+
                         <div className="sm:col-span-4">
                           <label
                             htmlFor="email"
@@ -330,6 +343,7 @@ export default function UserProfile() {
                             )}
                           </div>
                         </div>
+
                         <div className="sm:col-span-3">
                           <label
                             htmlFor="phone"
@@ -353,6 +367,7 @@ export default function UserProfile() {
                             )}
                           </div>
                         </div>
+
                         <div className="col-span-full">
                           <label
                             htmlFor="street-address"
@@ -376,6 +391,7 @@ export default function UserProfile() {
                             )}
                           </div>
                         </div>
+
                         <div className="sm:col-span-2 sm:col-start-1">
                           <label
                             htmlFor="city"
@@ -400,6 +416,7 @@ export default function UserProfile() {
                             )}
                           </div>
                         </div>
+
                         <div className="sm:col-span-2">
                           <label
                             htmlFor="state"
@@ -423,6 +440,7 @@ export default function UserProfile() {
                             )}
                           </div>
                         </div>
+
                         <div className="sm:col-span-2">
                           <label
                             htmlFor="pinCode"
@@ -448,6 +466,7 @@ export default function UserProfile() {
                         </div>
                       </div>
                     </div>
+
                     <div className="mt-6 flex items-center justify-end gap-x-6">
                       <button
                         onClick={(e) => setSelectedEditIndex(-1)}

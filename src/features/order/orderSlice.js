@@ -5,8 +5,9 @@ const initialState = {
   orders: [],
   status: "idle",
   currentOrder: null,
-  totalOrders: 0
+  totalOrders: 0,
 };
+//we may need more info of current order
 
 export const createOrderAsync = createAsyncThunk(
   "order/createOrder",
@@ -16,7 +17,6 @@ export const createOrderAsync = createAsyncThunk(
     return response.data;
   }
 );
-
 export const updateOrderAsync = createAsyncThunk(
   "order/updateOrder",
   async (order) => {
@@ -39,9 +39,9 @@ export const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    resetOrder : (state)=> {
-      state.currentOrder = null
-    }
+    resetOrder: (state) => {
+      state.currentOrder = null;
+    },
   },
   extraReducers: (builder) => {
     builder

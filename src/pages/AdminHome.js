@@ -1,18 +1,15 @@
 import AdminProductList from "../features/admin/components/AdminProductList";
-import Navbar from "../features/navbar/Navbar";
-import ProductList from "../features/product/components/ProductList";
+import NavBar from "../features/navbar/Navbar";
 
-function AdminHome(){
-    return (
-        <div>
-            <Navbar>
-                <AdminProductList>
-                    
-                </AdminProductList>
-            </Navbar>
-            Foot
-        </div>
-    );
+function AdminHome() {
+  return (
+    <div>
+      <NavBar>
+        <AdminProductList></AdminProductList>
+      </NavBar>
+      Foot
+    </div>
+  );
 }
 
 export default AdminHome;

@@ -1,16 +1,11 @@
 import AdminProductDetail from "../features/admin/components/AdminProductDetail";
-import Navbar from "../features/navbar/Navbar";
-import ProductDetail from "../features/product/components/ProductDetail";
-
-
+import NavBar from "../features/navbar/Navbar";
 function AdminProductDetailPage() {
   return (
     <div>
-      <Navbar>
-        <AdminProductDetail>
-
-        </AdminProductDetail>
-      </Navbar>
+      <NavBar>
+        <AdminProductDetail></AdminProductDetail>
+      </NavBar>
     </div>
   );
 }

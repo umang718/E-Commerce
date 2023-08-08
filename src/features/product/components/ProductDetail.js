@@ -1,22 +1,27 @@
-
 import { useState, useEffect } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
-import {fetchProductByIdAsync, selectProductById, selectProductListStatus} from "../productSlice"
-import { useParams } from 'react-router-dom';
-import { addToCartAsync,selectItems } from "../../cart/cartSlice";
+import {
+  fetchProductByIdAsync,
+  selectProductById,
+  selectProductListStatus,
+} from "../productSlice";
+import { useParams } from "react-router-dom";
+import { addToCartAsync, selectItems } from "../../cart/cartSlice";
 import { selectLoggedInUser } from "../../auth/authSlice";
 import { discountedPrice } from "../../../app/constants";
-import { useAlert } from 'react-alert';
-import { Grid } from 'react-loader-spinner';
+import { useAlert } from "react-alert";
+import { Grid } from "react-loader-spinner";
 
-const colors=[
+// TODO: In server data we will add colors, sizes , highlights. to each product
+
+const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
   { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
   { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
-]
-const sizes= [
+];
+const sizes = [
   { name: "XXS", inStock: false },
   { name: "XS", inStock: true },
   { name: "S", inStock: true },
@@ -25,28 +30,28 @@ const sizes= [
   { name: "XL", inStock: true },
   { name: "2XL", inStock: true },
   { name: "3XL", inStock: true },
-]
- 
+];
+
 const highlights = [
-  'Hand cut and sewn locally',
-  'Dyed with our proprietary colors',
-  'Pre-washed & pre-shrunk',
-  'Ultra-soft 100% cotton',
-]
+  "Hand cut and sewn locally",
+  "Dyed with our proprietary colors",
+  "Pre-washed & pre-shrunk",
+  "Ultra-soft 100% cotton",
+];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-
+// TODO : Loading UI
 
 export default function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
-  const user = useSelector(selectLoggedInUser)
-  const product = useSelector(selectProductById);
-  const params = useParams()
   const items = useSelector(selectItems);
+  const product = useSelector(selectProductById);
+  const dispatch = useDispatch();
+  const params = useParams();
   const alert = useAlert();
   const status = useSelector(selectProductListStatus);
 
@@ -57,24 +62,22 @@ export default function ProductDetail() {
       const newItem = {
         product: product.id,
         quantity: 1,
-        user: user.id,
       };
       dispatch(addToCartAsync(newItem));
       // TODO: it will be based on server response of backend
       alert.success("Item added to Cart");
     } else {
-      alert.error('Item Already added');
+      alert.error("Item Already added");
     }
   };
 
-  const dispatch = useDispatch();
-  useEffect(()=> {
-    dispatch(fetchProductByIdAsync(params.id))
-  },[dispatch, params.id])
+  useEffect(() => {
+    dispatch(fetchProductByIdAsync(params.id));
+  }, [dispatch, params.id]);
 
   return (
     <div className="bg-white">
-      {status === 'loading' ? (
+      {status === "loading" ? (
         <Grid
           height="80"
           width="80"

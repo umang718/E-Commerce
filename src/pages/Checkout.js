@@ -1,29 +1,33 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
-import { deleteItemFromCartAsync, selectItems, updateCartAsync } from "../features/cart/cartSlice";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  deleteItemFromCartAsync,
+  selectItems,
+  updateCartAsync,
+} from "../features/cart/cartSlice";
+import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { discountedPrice } from "../app/constants";
-import { selectLoggedInUser } from "../features/auth/authSlice";
-import { createOrderAsync, selectCurrentOrder, selectCurrentOrderStatus } from "../features/order/orderSlice";
-import { selectUserInfo } from "../features/user/userSlice";
 import { updateUserAsync } from "../features/user/userSlice";
-
-
+import { useState } from "react";
+import {
+  createOrderAsync,
+  selectCurrentOrder,
+} from "../features/order/orderSlice";
+import { selectUserInfo } from "../features/user/userSlice";
+import { discountedPrice } from "../app/constants";
 
 function Checkout() {
-  const [open, setOpen] = useState(true);
   const dispatch = useDispatch();
-
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const user = useSelector(selectUserInfo)
+
+  const user = useSelector(selectUserInfo);
   const items = useSelector(selectItems);
-  const currentOrder = useSelector(selectCurrentOrder)
+  const currentOrder = useSelector(selectCurrentOrder);
 
   const totalAmount = items.reduce(
     (amount, item) => discountedPrice(item.product) * item.quantity + amount,
@@ -31,11 +35,11 @@ function Checkout() {
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
 
-  const[selectedAddress, setSelectedAddresses] = useState(null)
-  const [paymentMethod, setPaymentMethod] = useState('null');
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState(null);
 
   const handleQuantity = (e, item) => {
-    dispatch(updateCartAsync({ id:item.id, quantity: +e.target.value }));
+    dispatch(updateCartAsync({ id: item.id, quantity: +e.target.value }));
   };
 
   const handleRemove = (e, id) => {
@@ -44,7 +48,7 @@ function Checkout() {
 
   const handleAddress = (e) => {
     console.log(e.target.value);
-    setSelectedAddresses(user.addresses[e.target.value]);
+    setSelectedAddress(user.addresses[e.target.value]);
   };
 
   const handlePayment = (e) => {
@@ -58,10 +62,10 @@ function Checkout() {
         items,
         totalAmount,
         totalItems,
-        user:user.id,
+        user: user.id,
         paymentMethod,
         selectedAddress,
-        status: "pending",
+        status: "pending", // other status can be delivered, received.
       };
       dispatch(createOrderAsync(order));
       // need to redirect from here to a new page of order success.
@@ -86,10 +90,12 @@ function Checkout() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
+            {/* This form is for address */}
             <form
               className="bg-white px-5 py-12 mt-12"
               noValidate
               onSubmit={handleSubmit((data) => {
+                console.log(data);
                 dispatch(
                   updateUserAsync({
                     ...user,
@@ -120,7 +126,7 @@ function Checkout() {
                         <input
                           type="text"
                           {...register("name", {
-                            required: "Name is required",
+                            required: "name is required",
                           })}
                           id="name"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -142,7 +148,7 @@ function Checkout() {
                         <input
                           id="email"
                           {...register("email", {
-                            required: "Email is required",
+                            required: "email is required",
                           })}
                           type="email"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -164,7 +170,7 @@ function Checkout() {
                         <input
                           id="phone"
                           {...register("phone", {
-                            required: "Phone is required",
+                            required: "phone is required",
                           })}
                           type="tel"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -186,7 +192,7 @@ function Checkout() {
                         <input
                           type="text"
                           {...register("street", {
-                            required: "Street is required",
+                            required: "street is required",
                           })}
                           id="street"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -210,7 +216,7 @@ function Checkout() {
                         <input
                           type="text"
                           {...register("city", {
-                            required: "City is required",
+                            required: "city is required",
                           })}
                           id="city"
                           autoComplete="address-level2"
@@ -233,7 +239,7 @@ function Checkout() {
                         <input
                           type="text"
                           {...register("state", {
-                            required: "State is required",
+                            required: "state is required",
                           })}
                           id="state"
                           autoComplete="address-level1"
@@ -256,7 +262,7 @@ function Checkout() {
                         <input
                           type="text"
                           {...register("pinCode", {
-                            required: "Pincode is required",
+                            required: "pinCode is required",
                           })}
                           id="pinCode"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -270,8 +276,10 @@ function Checkout() {
                     </div>
                   </div>
                 </div>
+
                 <div className="mt-6 flex items-center justify-end gap-x-6">
                   <button
+                    // onClick={e=>reset()}
                     type="button"
                     className="text-sm font-semibold leading-6 text-gray-900"
                   >
@@ -288,12 +296,12 @@ function Checkout() {
             </form>
             <div className="border-b border-gray-900/10 pb-12">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
-                Address
+                Addresses
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">
-                Choose from Existing Addresses
+                Choose from Existing addresses
               </p>
-              <ul role="list">
+              <ul>
                 {user.addresses.map((address, index) => (
                   <li
                     key={index}
@@ -337,7 +345,7 @@ function Checkout() {
                     Payment Methods
                   </legend>
                   <p className="mt-1 text-sm leading-6 text-gray-600">
-                    Choose one
+                    Choose One
                   </p>
                   <div className="mt-6 space-y-6">
                     <div className="flex items-center gap-x-3">
@@ -360,18 +368,18 @@ function Checkout() {
                     <div className="flex items-center gap-x-3">
                       <input
                         id="card"
-                        name="payments"
                         onChange={handlePayment}
+                        name="payments"
+                        checked={paymentMethod === "card"}
                         value="card"
                         type="radio"
-                        checked={paymentMethod === "card"}
                         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                       />
                       <label
                         htmlFor="card"
                         className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        Card Payments
+                        Card Payment
                       </label>
                     </div>
                   </div>
@@ -380,7 +388,7 @@ function Checkout() {
             </div>
           </div>
           <div className="lg:col-span-2">
-            <div className="mx-auto bg-white mt-12 max-w-7xl px-2 sm:px-2 lg:px-4">
+            <div className="mx-auto mt-12 bg-white max-w-7xl px-2 sm:px-2 lg:px-4">
               <div className="border-t border-gray-200 px-0 py-6 sm:px-0">
                 <h1 className="text-4xl my-5 font-bold tracking-tight text-gray-900">
                   Cart
@@ -401,9 +409,13 @@ function Checkout() {
                           <div>
                             <div className="flex justify-between text-base font-medium text-gray-900">
                               <h3>
-                                <a href={item.product.id}>{item.product.title}</a>
+                                <a href={item.product.id}>
+                                  {item.product.title}
+                                </a>
                               </h3>
-                              <p className="ml-4">${discountedPrice(item.product)}</p>
+                              <p className="ml-4">
+                                ${discountedPrice(item.product)}
+                              </p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">
                               {item.product.brand}
@@ -417,7 +429,6 @@ function Checkout() {
                               >
                                 Qty
                               </label>
-
                               <select
                                 onChange={(e) => handleQuantity(e, item)}
                                 value={item.quantity}
@@ -450,10 +461,10 @@ function Checkout() {
               <div className="border-t border-gray-200 px-2 py-6 sm:px-2">
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                   <p>Subtotal</p>
-                  <p>${totalAmount}</p>
+                  <p>$ {totalAmount}</p>
                 </div>
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
-                  <p>Total Items in cart</p>
+                  <p>Total Items in Cart</p>
                   <p>{totalItems} items</p>
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">
@@ -462,9 +473,7 @@ function Checkout() {
                 <div className="mt-6">
                   <div
                     onClick={handleOrder}
-                    className="flex items-center cursor-pointer justify-center rounded-md
-                border border-transparent bg-indigo-600 px-6 py-3 text-base
-                font-medium text-white shadow-sm hover:bg-indigo-700"
+                    className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                   >
                     Order Now
                   </div>
@@ -476,7 +485,6 @@ function Checkout() {
                       <button
                         type="button"
                         className="font-medium text-indigo-600 hover:text-indigo-500"
-                        onClick={() => setOpen(false)}
                       >
                         Continue Shopping
                         <span aria-hidden="true"> &rarr;</span>
